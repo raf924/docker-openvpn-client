@@ -1,5 +1,7 @@
 FROM alpine
 
+ENV CONF_FILE /vpn/client.conf
+
 ENTRYPOINT ["openvpn", "--config", "${CONF_FILE}", "--auth-no-cache"]
 VOLUME ["/vpn"]
 
