@@ -1,0 +1,1 @@
+openvpn --config $CONF_FILE --auth-no-cache
