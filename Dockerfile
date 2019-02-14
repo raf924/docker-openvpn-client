@@ -9,5 +9,6 @@ HEALTHCHECK --interval=5m --timeout=30s --start-period=1m --retries=3 CMD ["ash"
 RUN apk add --no-cache openvpn
 RUN apk add --no-cache curl
 
-COPY healthcheck.sh /vpn/healthcheck.sh
-CMD ["openvpn", "--config", "$CONF_FILE", "--auth-no-cache"]
+COPY healthcheck.sh /healthcheck.sh
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT [ "ash", "/entrypoint.sh" ]
