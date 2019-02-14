@@ -1,0 +1,20 @@
+version: "2"
+services:
+  vpn:
+    build:
+      context: .
+    healthcheck:
+      test: ["CMD", "ash", "/healthcheck.sh"]
+      interval: 5m
+      timeout: 30s
+      retries: 3
+      start_period: 60s
+    environment:
+      CONF_FILE: /vpn/vpn.ovpn
+    container_name: vpn
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      - /opt/vpn:/vpn
